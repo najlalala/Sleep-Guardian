@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Prediction Input</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background: url("{{ url_for('static', filename='background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(20px);
+        }
+        .container{
+            width: 100%;
+            max-width: 650px;
+            background: whitesmoke;
+            padding: 28px;
+            margin: 0 28px;
+            border-radius: 10px;
+            box-shadow: inset -2px 2px 2px white;
+        }
+        .form-title{
+            font-size: 26px;
+            font-weight: 600;
+            text-align: center;
+            padding-bottom: 6px;
+            color: white;
+            text-shadow: 2px 2px 2px black;
+            border-bottom: solid 1px rgb(22, 0, 79);
+        }
+        .main-user-info{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px 0;
+        }
+        .user-input-box:nth-child(2n){
+            justify-content: end;
+        }
+        .user-input-box{
+            display: flex;
+            flex-wrap: wrap;
+            width: 50%;
+            padding-bottom: 15px;
+        }
+        .user-input-box label{
+            width: 95%;
+            color: black;
+            font-size: 20px;
+            font-weight: 400;
+            margin: 5px 0;
+        }
+        .user-input-box input{
+            height: 40px;
+            width: 95%;
+            border-radius: 7px;
+            outline: none;
+            border: 1 px solid grrey;
+            padding: 0 10px;
+        }
+
+        .gender-title{
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            border-bottom: 1px solid white;
+        }
+        .gender-category{
+            margin: 15px 0;
+            color: white;
+        }
+        .gender-category label{
+            padding: 0 20px 0 5px;
+
+        }
+        .gender-title label,
+        .gender-title input,
+        .submit input{
+            cursor: pointer;
+        }
+        .submit{
+            margin-top: 40px;
+        }
+        .submit input{
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            color: black;
+            background: rgba(63, 72, 114, 0.7);
+        }
+        .submit input:hover{
+            background: black;
+            color: grey;
+        }
+        @media(max-width: 600px){
+            .container{
+                min-width: 280px;
+            }
+            .user-input-box{
+                margin-bottom: 12px;
+                width: 100%;
+            }
+            .user-input-box:nth-child(2n){
+                justify-content: space-between;
+            }
+            .gender-category{
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+            }
+            .main-user-info{
+                max-width: 380px;
+                overflow: auto;
+            }
+            .main-user-info::-webkit-scrollbar{
+                width: 0;
+            }
+        }
+        .button{
+            font-size: 18px;
+            font-weight: 300;
+            padding: 20px;
+            margin: 30px;
+            width: 250px;
+            background: whitesmoke;
+            cursor: pointer;
+            border: none;
+            border-radius: 80px;
+            color: black;
+            box-shadow: 10px 10px 10px -1px rgba(10, 99, 169, 0.16),
+            -10px -10px 10px -1px rgba(255, 255, 255, 0.7);  
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Health Prediction Input Form</h2>
+        <form action="/predict" method="POST">
+            <div class="main-user-info">
+
+                <div class="user-input-box">
+                    <label>Nama:</label>
+                    <input type="text" name="name" placeholder="Input nama Anda" required>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="gender">Jenis Kelamin:</label>
+                    <select name="gender" id="gender">
+                        <option value="Male">Pria</option>
+                        <option value="Female">Wanita</option>
+                    </select>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="age">Usia:</label>
+                    <input type="number" name="age" placeholder="Input usia Anda" required>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="weight">Berat Badan:</label>
+                    <input type="number" name="weight" placeholder="Input bear badan Anda (kg)" required><br>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="height">Tinggi Badan:</label>
+                    <input type="number" name="height" placeholder="Input tinggi dan Anda (cm)" required><br>
+                </div>
+
+
+                <div class="user-input-box">
+                    <label for="sleep_duration">Durasi Tidur:</label>
+                    <input type="text" name="sleep_duration" placeholder="Input durasi tidur Anda (jam)" required><br>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="quality_of_sleep">Kualitas Tidur:</label>
+                    <input type="number" name="quality_of_sleep" min="0" max="10" value="0" required><br>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="activity">Aktivitas Fisik:</label>
+                    <input type="number" name="activity" placeholder="input aktivitas fisik perhari (jam)" required><br>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="stress_level">Tingkat stres:</label>
+                    <input type="number" name="stress_level" min="0" max="10" value="0" required><br>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="heart_rate">Detak Jantung:</label>
+                    <input type="text" name="heart_rate" placeholder="Input detak jantung per menit" required>
+                    <p>Bisa dicek menggunakan aplikasi ... pada smartphone</p><br>
+                </div>
+
+                <div class="user-input-box">
+                    <label for="daily_steps">Jumlah Langkah:</label>
+                    <input type="text" name="daily_steps" placeholder="Input jumlah langkah perhari" required>
+                    <p>Bisa dicek menggunakan aplikasi ... pada smartphone</p><br>
+                </div>
+
+                <br>
+                <input type="submit" value="Predict" class="button">
+
+            </div>
+
+        </form>
+
+    </div>
+</body>
+</html>
