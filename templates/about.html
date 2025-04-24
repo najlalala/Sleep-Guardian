@@ -1,0 +1,126 @@
+{% extends "base2.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="icon" type="image" href="/static/logo.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        .container {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            box-sizing: border-box;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin-bottom: 20px;
+        }
+
+        .about-container {
+            flex-basis: calc(50% - 20px); 
+        }
+        
+        .about-container p {
+            text-align: justify;
+        }
+        .contact-container,
+        .map-container {
+            flex-basis: calc(25% - 20px); 
+            margin-left: 10px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+
+        .contact-item {
+            background-color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-logo {
+            width: 25px;
+            height: 25px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+
+            .container,
+            .contact-container,
+            .map-container {
+                width: calc(100% - 20px); 
+            }
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="container about-container">
+            <h1>About Us</h1>
+            <p>
+                Selamat datang di Sleep Guardian, sebuah situs web yang telah dirancang oleh Kelompok 14 sebagai bagian dari Tugas Akhir Mata Kuliah Algoritma Pemrograman II di Program Studi Teknologi Sains Data, Universitas Airlangga.
+            </p>
+            <p>
+                Tujuan utama situs ini adalah membantu Anda memahami pola tidur Anda dengan memberikan informasi tentang kebiasaan harian Anda. Sleep Guardian dapat memberikan prediksi apakah Anda mungkin mengalami masalah tidur, seperti sleep apnea atau insomnia, berdasarkan data yang Anda berikan.
+            </p>
+            <p>
+                Penting untuk dicatat bahwa data Anda aman dan tidak disimpan, dan Anda juga dapat mengaksesnya secara anonim untuk kenyamanan Anda. Kami memahami privasi Anda dengan serius.
+            </p>
+            <p>
+                Meskipun tingkat keakuratan situs ini mencapai 88%, kami tetap menyarankan Anda untuk berkonsultasi dengan tenaga kesehatan. Sleep Guardian hanya bertujuan sebagai alat deteksi dini untuk gangguan tidur yang mungkin Anda alami.
+            </p>
+        </div>
+
+        <div class="container contact-container">
+            <h2>Find Us</h2>
+            <div class="contact-item">
+                <img src="{{ url_for('static', filename='/location.png') }}" alt="Location" class="contact-logo">
+                <span class="contact-text"><a href="https://maps.app.goo.gl/NyKYyTs8CjDCw4Jj7">Gedung Kuliah Bersama, Universitas Airlangga C.
+                    <br>Jl. Dr. Ir. H. Soekarno, Mulyorejo, Surabaya, Jawa Timur 60115.
+                </a></span>
+            </div>
+        </div>
+
+        <div class="container map-container">
+            <h2>Maps</h2>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.754834458687!2d112.78165931027327!3d-7.268716192707946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fa21a3515291%3A0x3edf1522ff735924!2sUniversitas%20Airlangga%20-%20Kampus%20C!5e0!3m2!1sid!2sid!4v1702282597809!5m2!1sid!2sid"
+                allowfullscreen="false"
+                loading="lazy"
+            ></iframe>
+        </div>
+    </div>
+
+</body>
+</html>
+
+{% endblock %}
